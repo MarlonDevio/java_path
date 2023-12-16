@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="i"
+                  name="Info" start-page="Java-Path.md">
+
+    <toc-element topic="Java-Path.md">
+        <toc-element topic="1-Fundamentals.md">
+            <toc-element topic="9-implementing-class-constructors-and-initializers.md">
+            </toc-element>
+            <toc-element topic="10-Using-Static-Members.md"/>
+        </toc-element>
+    </toc-element>
+</instance-profile>

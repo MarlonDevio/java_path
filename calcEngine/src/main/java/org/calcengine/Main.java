@@ -12,35 +12,30 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        double[] leftVals = {100.0, 200.0d, 450.0d, 20.0d};
-        double[] rightVals = {50.0d, 17.0d, 225.0d, 3.0d};
-        char[] opCodes = {'+', '-', '/', '*'};
-        double[] results = new double[opCodes.length];
+        performCalculations();
+    }
 
-        // Check the length of the command line arguments
-        if (args.length == 0) {
-            // If no arguments are provided, perform calculations with predefined values
-            for (int i = 0; i < opCodes.length; i++) {
-                // Execute the operation for each pair of values and store the result
-                results[i] = execute(opCodes[i], leftVals[i], rightVals[i]);
-            }
-            // Print all the results
-            for (double result : results) {
-                System.out.println(result);
-            }
-        } else if (args.length == 1 && args[0].equals("interactive")) {
-            executeInteractively();
-        }
-        else if (args.length == 3) {
-            // If three arguments are provided, handle them as an operation and two numbers
-            double result = handleCommandLine(args);
-            // Print the result of the operation
-            System.out.println(result);
-        } else {
-            // If the number of arguments is not 0 or 3, print an error message
-            System.out.println("Please provide an operation code and 2 numeric values");
-        }
+    static void performCalculations(){
+        MathEquation[] equations = new MathEquation[4];
+        equations[0] = create(100.0d, 50.0d,'/');
+        equations[1] = create(25.0d, 92.0d,'+');
+        equations[2] = create(225.0d, 17.0d,'-');
+        equations[3] = create(11.0d, 3.0d,'*');
 
+        for(MathEquation equation : equations){
+            equation.execute();
+            System.out.println("Result = " + equation.result);
+        }
+    }
+
+
+    private static MathEquation create(double leftVal, double rightVal,
+                                       char opCode) {
+        MathEquation equation = new MathEquation();
+        equation.leftVal = leftVal;
+        equation.rightVal = rightVal;
+        equation.opCode = opCode;
+        return equation;
     }
 
     /**
@@ -87,13 +82,7 @@ public class Main {
      */
     static double execute(char opCode, double leftVal, double rightVal) {
         double result = 0;
-        switch (opCode) {
-            case '+' -> result = leftVal + rightVal;
-            case '-' -> result = leftVal - rightVal;
-            case '/' -> result = leftVal != 0 ? leftVal / rightVal : 0;
-            case '*' -> result = leftVal * rightVal;
-            default -> System.out.println("didnt work");
-        }
+
         return result;
     }
 
